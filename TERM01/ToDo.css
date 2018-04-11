@@ -1,0 +1,25 @@
+body{
+  padding: 50px;
+}
+header{
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 10px;
+  background-color: yellow;
+  border: 1px solid black;
+  overflow: hidden;
+  border-radius: 10px;
+}
+#addToDo{
+  float: left;
+  width: 100px;
+  height: 35px;
+  font-weight: bold;
+  background-color: pink;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+form{
+
+  text-align: right;
+}
