@@ -1,0 +1,150 @@
+header{
+  color: white;
+  background-color: red;
+  font-size: 26px;
+  text-align: center;
+  padding: 60px;
+  font-weight: bold;
+}
+
+nav{
+  padding: 10px;
+  background-color: #ff8200;
+}
+nav a{
+  border-radius: 50px;
+  color: white;
+  margin: 10px;
+  padding: 5px;
+  border: solid yellow;
+  text-decoration: none;
+}
+
+nav a:hover{
+  color:yellow;
+  /*마우스 올려 놓을 시 */
+}
+nav a:active{
+  color: white;
+  background-color: yellow;
+  /*클릭한 상태에서 마우스 안 뗏을 시 */
+}
+section{
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: green;
+}
+
+article{
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+}
+
+h1{
+  color: purple;
+  font-size: 30px;
+  text-decoration: underline;
+  text-align: left;
+  font-family: cursive;
+}
+h2{
+  color: navy;
+  font-size: 20px;
+  text-decoration: underline;
+  text-align: left;
+  font-family: cursive;
+}
+.image{
+  text-align: center;
+}
+#my_image{
+  width: 300px;
+  height: 300px;
+  margin-bottom : 25px;
+  border: solid yellow;
+  border-width: thick;
+}
+p{
+  color: black;
+  font-size: 14px;
+  text-align: left;
+  font-family: monospace;
+  text-indent: 10px;
+}
+#table_title{
+  color: blue;
+  font-weight : bold;
+}
+.table .day, .period{
+  background-color: yellow;
+}
+.table table{
+  /* ☆★☆★☆★☆★☆★☆★☆★☆★전체 테이블의 테두리는 하나의 선으로 표시*/
+  margin-top: 5px;
+  border:1px solid black;
+  text-align: center;
+  border-collapse: collapse;
+}
+.table td, th{
+  /*pdding:20px로 테두리와 컨테츠간의 공간설정*/
+  border:1px solid black;
+  padding: 20px;
+}
+.favoritepage .favoritepage_url{
+  text-indent:3px;
+  list-style-type: square;
+  margin: 5px;
+}
+li a:link{
+  color: black;
+  text-decoration: none;
+  /*한번도 안누른 링크*/
+}
+li a:visited{
+  color: gray;
+  /*방문했을 시 */
+}
+li a:hover{
+  color:blue;
+  text-decoration: underline;
+  /*마우스 올려 놓을 시 */
+}
+li a:active{
+  color: red;
+  /*클릭한 상태에서 마우스 안 뗏을 시 */
+}
+
+.startpage{
+  text-align : center;
+}
+
+footer{
+  background-color:blue;
+  padding: 10px;
+  text-align: right;
+}
+footer a{
+  padding: 5px;
+  border-radius: 50px;
+  color: white;
+  border: solid yellow;
+  text-decoration: none;
+}
+footer a:hover{
+  color:yellow;
+  /*마우스 올려 놓을 시 */
+}
+footer a:active{
+  color: white;
+  background-color: yellow;
+  /*클릭한 상태에서 마우스 안 뗏을 시 */
+}
+footer p{
+  font-weight:bold;
+  text-align: center;
+  color: black;
+}
