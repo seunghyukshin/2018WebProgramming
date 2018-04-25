@@ -2,29 +2,61 @@
 <html lang="en" dir="ltr">
   <head>
     <link rel="stylesheet" type="text/css" href="ToDo.css">
+    <script type="text/javascript" src="ToDo.js"></script>
     <meta charset="utf-8">
     <title> To Do</title>
   </head>
   <body>
-    <header>
-      <button id="addToDo"type="button" name="button"> Add ToDo</button>
-      <form action="index.html" method="post">
+    <article>
+      <header>
+        <form action="index.html" method="post">
+          <button class="button"type="button" name="button"> Add ToDo</button>
+          
+          <select id="selectDay" name="day" >
+            <option value="" disabled selected>day</option>
+            <option value="monday">월요일</option>
+            <option value="tuesday">화요일</option>
+            <option value="wednesday">수요일</option>
+          </select>
 
-        <select id="selectDay" name="day" >
-          <option value="" disabled selected>day</option>
-          <option value="monday">월요일</option>
-          <option value="tuesday">화요일</option>
-          <option value="wednesday">수요일</option>
-        </select>
+          <input id="searchItem" type="text" name="" value="" placeholder="Enter your keyword here">
+        </form>
+      </header>
+      <main>
+        <!-- Middle Bar A~D, Display Area A~D -->
+  			<section id="middleBar_mon" class="middle">
+  				<section class="middleTop"><b>mon</b></section>
+  				<section class="displayArea_mon"><b>월요일 목록</b></section>
+  			</section>
+  			<!--경계선-->
+  			<div class="mainLine"></div>
 
-        <input id="searchItem" type="text" name="" value="" placeholder="Enter your keyword here">
-      </form>
-    </header>
+  			<section id="middleBar_tue" class="middle">
+  				<section class="middleTop"><b>tue</b></section>
+  				<section class="displayArea_tue"><b>화요일 목록</b></section>
+  			</section>
+  			<div class="mainLine"></div>
 
-    <p> Monday</p>
-    <p> 아무 의미없는 문장들입니다.</p>
-    <p> 헤더의 모양을 위해 존재하는 것들입니다.</p>
+  			<section id="middleBar_wed" class="middle">
+  				<section class="middleTop"><b>wed</b></section>
+  				<section class="displayArea_wed"><b>수요일 목록</b></section>
+  			</section>
+  			<div class="mainLine"></div>
 
+  			<section id="middleBar_thu" class="middle">
+  				<section class="middleTop"><b>thu</b></section>
+  				<section class="displayArea_thu"><b>목요일 목록</b></section>
+  			</section>
+  			<div class="mainLine"></div>
+
+  			<section id="middleBar_Fri" class="middle">
+  				<section class="middleTop"><b>Fri</b></section>
+  				<section class="displayArea_Fri"><b>금요일 목록</b></section>
+  			</section>
+
+      </main>
+
+  </article>
 
 
 
