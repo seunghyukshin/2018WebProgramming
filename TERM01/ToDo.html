@@ -9,17 +9,16 @@
   <body>
     <article>
       <header>
-        <form action="index.html" method="post">
-          <button class="button"type="button" name="button"> Add ToDo</button>
-          
-          <select id="selectDay" name="day" >
+        <button id="button_AddToDo" onclick="openModal()"> Add ToDo</button>
+        <form id="searchForm"action="ToDo.html" method="post">
+          <select class="formInner" id="selectDay" name="searchDay">
             <option value="" disabled selected>day</option>
             <option value="monday">월요일</option>
             <option value="tuesday">화요일</option>
             <option value="wednesday">수요일</option>
           </select>
 
-          <input id="searchItem" type="text" name="" value="" placeholder="Enter your keyword here">
+          <input class="formInner" id="searchItem" type="text" name="" value="" placeholder=" Enter your keyword here">
         </form>
       </header>
       <main>
@@ -56,6 +55,25 @@
 
       </main>
 
+
+      <div id="MyModal" class="modal">
+      <!-- Modal content !-->
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <form id="form_inModal" action="" method="post">
+            <select class="formInner_inModal" name="addDay">
+              <option value="" disabled selected>day</option>
+              <option value="monday">월요일</option>
+              <option value="tuesday">화요일</option>
+              <option value="wednesday">수요일</option>
+            </select>
+            <input class="formInner_inModal" type="text" name="addItemName" value="Item Al" >
+            <textarea class="formInner_inModal" name="addItemContents" rows="8" cols="80"></textarea>
+          </form>
+
+          <button class="button_Done" onclick="add()"> Add </button>
+        </div>
+    </div>
   </article>
 
 
