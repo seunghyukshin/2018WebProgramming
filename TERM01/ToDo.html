@@ -13,9 +13,11 @@
         <form id="searchForm"action="ToDo.html" method="post">
           <select class="formInner" id="selectDay" name="searchDay">
             <option value="" disabled selected>day</option>
-            <option value="monday">월요일</option>
-            <option value="tuesday">화요일</option>
-            <option value="wednesday">수요일</option>
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <option value="wednesday">Wednesday</option>
+            <option value="thursday">Thursday</option>
+            <option value="friday">Friday</option>
           </select>
 
           <input class="formInner" id="searchItem" type="text" name="" value="" placeholder=" Enter your keyword here">
@@ -25,32 +27,32 @@
         <!-- Middle Bar A~D, Display Area A~D -->
   			<section id="middleBar_mon" class="middle">
   				<section class="middleTop"><b>mon</b></section>
-  				<section class="displayArea_mon"><b>월요일 목록</b></section>
+  				<section class="displayArea_mon"></section>
   			</section>
   			<!--경계선-->
   			<div class="mainLine"></div>
 
   			<section id="middleBar_tue" class="middle">
   				<section class="middleTop"><b>tue</b></section>
-  				<section class="displayArea_tue"><b>화요일 목록</b></section>
+  				<section class="displayArea_tue"></section>
   			</section>
   			<div class="mainLine"></div>
 
   			<section id="middleBar_wed" class="middle">
   				<section class="middleTop"><b>wed</b></section>
-  				<section class="displayArea_wed"><b>수요일 목록</b></section>
+  				<section class="displayArea_wed"></section>
   			</section>
   			<div class="mainLine"></div>
 
   			<section id="middleBar_thu" class="middle">
   				<section class="middleTop"><b>thu</b></section>
-  				<section class="displayArea_thu"><b>목요일 목록</b></section>
+  				<section class="displayArea_thu"></section>
   			</section>
   			<div class="mainLine"></div>
 
-  			<section id="middleBar_Fri" class="middle">
+  			<section id="middleBar_fri" class="middle">
   				<section class="middleTop"><b>Fri</b></section>
-  				<section class="displayArea_Fri"><b>금요일 목록</b></section>
+  				<section class="displayArea_Fri"></section>
   			</section>
 
       </main>
@@ -63,15 +65,17 @@
           <form id="form_inModal" action="" method="post">
             <select class="formInner_inModal" name="addDay">
               <option value="" disabled selected>day</option>
-              <option value="monday">월요일</option>
-              <option value="tuesday">화요일</option>
-              <option value="wednesday">수요일</option>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
             </select>
-            <input class="formInner_inModal" type="text" name="addItemName" value="Item Al" >
-            <textarea class="formInner_inModal" name="addItemContents" rows="8" cols="80"></textarea>
+            <input class="formInner_inModal" type="text" name="addItemName" placeholder="Item Name" >
+            <textarea class="formInner_inModal" name="addItemContents" rows="8" cols="80" placeholder="Item Contents"></textarea>
+            <input class="button_Done" type="button" name="" value="Add" onclick="addItem()">
           </form>
 
-          <button class="button_Done" onclick="add()"> Add </button>
         </div>
     </div>
   </article>
