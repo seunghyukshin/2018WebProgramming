@@ -175,6 +175,19 @@ main{
 	border-radius: 5px;
 	background-color: white;
 	vertical-align: middle;
+	overflow:hidden;word-wrap:break-word;
+}
+
+.remove {
+  color: black;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+}
+.remove:hover, .remove:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .itemName{
