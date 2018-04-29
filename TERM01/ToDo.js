@@ -1,13 +1,12 @@
 var modal;
 var formItemInModal; //  0:select DAY  1:Name  2:Contents
-var monItem; var monIndex=0;
-var tueItem; var tueIndex=0;
-var wedItem; var wedIndex=0;
-var thuItem; var thuIndex=0;
-var friItem; var friIndex=0;
+var monItem=[]; var monIndex=0;
+var tueItem=[]; var tueIndex=0;
+var wedItem=[]; var wedIndex=0;
+var thuItem=[]; var thuIndex=0;
+var friItem=[]; var friIndex=0;
 //var areaFri;
 //var divItem;
-var close;
 
 // AddToDo 클릭시 modalopen
 function openModal() {
@@ -21,40 +20,36 @@ function closeModal() {
 }
 
 function addItem(){
-  var itemName;
   formItemInModal=document.getElementsByClassName('formInner_inModal');
   switch (formItemInModal[0].value) {
     case "monday":
-      var areaMon = document.getElementsByClassName('displayArea_mon');
-      console.log(monIndex); //start expected 0
-      makeDiv(this.monItem,itemName,areaMon[0]);
-      this.monIndex= this.monIndex+1;
-
-      //divItem.setAttribute("backgroundColor", "#cfe0e0");// 배경색부여
+      var areaMon = document.getElementsByClassName('displayArea_mon')[0];
+      this.monItem[this.monIndex]=makeDiv(areaMon); // 배열로관리
+      this.monIndex++;
       break;
 
     case "tuesday":
-    var areaTue = document.getElementsByClassName('displayArea_tue');
-    makeDiv(this.tueItem,itemName,areaTue[0]);
-    this.tueIndex= this.tueIndex+1;
+      var areaTue = document.getElementsByClassName('displayArea_tue')[0];
+      this.tueItem[this.tueIndex]=makeDiv(areaTue);
+      this.tueIndex++;
       break;
 
     case "wednesday":
-    var areaWed = document.getElementsByClassName('displayArea_wed');
-    makeDiv(this.wedItem,itemName,areaWed[0]);
-    this.wedIndex= this.wedIndex+1;
+      var areaWed = document.getElementsByClassName('displayArea_wed')[0];
+      this.wedItem[this.wedIndex]=makeDiv(areaWed);
+      this.wedIndex++;
       break;
 
     case "thursday":
-    var areaThu = document.getElementsByClassName('displayArea_thu');
-    makeDiv(this.thuItem,itemName,areaThu[0]);
-    this.thuIndex= this.thuIndex+1;
+      var areaThu = document.getElementsByClassName('displayArea_thu')[0];
+      this.thuItem[this.thuIndex]=makeDiv(areaThu);
+      this.thuIndex++;
       break;
 
     case "friday":
-    var areaFri = document.getElementsByClassName('displayArea_fri');
-    makeDiv(this.friItem,itemName,areaFri[0]);
-    this.friIndex= this.friIndex+1;
+      var areaFri = document.getElementsByClassName('displayArea_fri')[0];
+      this.friItem[this.friIndex]=makeDiv(areaFri);
+      this.friIndex++;
       break;
 
     default:
@@ -62,64 +57,203 @@ function addItem(){
   }
 closeModal();
   //formItemInModal[0].
-
 }
 
-function makeDiv(divItem,itemName,area){
-  divItem = document.createElement('div');
-  divItem.setAttribute("id", "divItem");//id부여
-
-  //div에 index 속성을 부여하자! //failed
-
-  //close를 divItem에 추가하자
-  close = document.createElement('span');
-  close.setAttribute("class", "close");//id부여
-//  close.setAttribute("font-size"," 12px");
-  close.innerHTML='&times;';
-  divItem.appendChild(close);
-
-  itemName = formItemInModal[1].value;//입력한 text
-  var textDiv = document.createElement('div');
-//  var text = document.createElement('span');
-//  var text = document.createTextNode(itemName);
-//  text.clear = "both";
-  textDiv.setAttribute("class", "itemName");//id부여
-  //text.innerHTML = itemName;
-  textDiv.innerHTML = itemName;
-
-  //text.setAttribute("clear","both");
-  divItem.appendChild(textDiv);//div에 textdiv삽입
-  // console.log(area);
-  // console.log(area.className);
-  // console.log(area.id);
+/***********makeDiv**********/
+function makeDiv(area){
 
   switch (area.className) {
     case "displayArea_mon":
-    divItem.style.backgroundColor = "#cfe0e0";
+      var itemName = this.formItemInModal[1].value;
+      var divItem = document.createElement('div');
+      divItem.setAttribute("id","divItem");
+      divItem.setAttribute("index",monIndex);
+      divItem.style.backgroundColor = "#cfe0e0";
+      //console.log(monIndex); //start expected 0
+      //div.setAttribute('index',this.monIndex);
+      var close = document.createElement('span');
+      close.setAttribute("class", "close");//id부여
+      close.setAttribute("onclick","removeItem(this)");
+      //  close.setAttribute("font-size"," 12px");
+      close.innerHTML='&times;';
+      divItem.appendChild(close);
+      var textDiv = document.createElement('div');
+      textDiv.setAttribute("class", "itemName");//id부여
+      textDiv.innerHTML = itemName;
+      divItem.appendChild(textDiv);
+      area.appendChild(divItem);
+
+      return divItem;
       break;
+
+
     case "displayArea_tue":
-    divItem.style.backgroundColor = "#e9b7b7";
+      var itemName = this.formItemInModal[1].value;
+      var divItem = document.createElement('div');
+      divItem.setAttribute("id","divItem");
+      divItem.setAttribute("index",tueIndex);
+      divItem.style.backgroundColor = "#e9b7b7";
+      var close = document.createElement('span');
+      close.setAttribute("class", "close");
+      close.setAttribute("onclick","removeItem(this)");
+      close.innerHTML='&times;';
+      divItem.appendChild(close);
+      var textDiv = document.createElement('div');
+      textDiv.setAttribute("class", "itemName");
+      textDiv.innerHTML = itemName;
+      divItem.appendChild(textDiv);
+      area.appendChild(divItem);
+
+      return divItem;
       break;
+
+
+
     case "displayArea_wed":
-    console.log("fuck");
-    divItem.style.backgroundColor = "#cce0e0";
+
+      var itemName = this.formItemInModal[1].value;
+      var divItem = document.createElement('div');
+      divItem.setAttribute("id","divItem");
+      divItem.setAttribute("index",wedIndex);
+      divItem.style.backgroundColor = "#cce0e0";
+      var close = document.createElement('span');
+      close.setAttribute("class", "close");
+      close.setAttribute("onclick","removeItem(this)");
+      close.innerHTML='&times;';
+      divItem.appendChild(close);
+      var textDiv = document.createElement('div');
+      textDiv.setAttribute("class", "itemName");
+      textDiv.innerHTML = itemName;
+      divItem.appendChild(textDiv);
+      area.appendChild(divItem);
+
+      return divItem;
       break;
+
+
     case "displayArea_thu":
-    divItem.style.backgroundColor = "#e2ddc0";
+      var itemName = this.formItemInModal[1].value;
+      var divItem = document.createElement('div');
+      divItem.setAttribute("id","divItem");
+      divItem.setAttribute("index",thuIndex);
+      divItem.style.backgroundColor = "#e2ddc0";
+      var close = document.createElement('span');
+      close.setAttribute("class", "close");
+      close.setAttribute("onclick","removeItem(this)");
+      close.innerHTML='&times;';
+      divItem.appendChild(close);
+      var textDiv = document.createElement('div');
+      textDiv.setAttribute("class", "itemName");
+      textDiv.innerHTML = itemName;
+      divItem.appendChild(textDiv);
+      area.appendChild(divItem);
+
+      return divItem;
       break;
+
+
     case "displayArea_fri":
-    divItem.style.backgroundColor = "skyblue";
+      var itemName = this.formItemInModal[1].value;
+      var divItem = document.createElement('div');
+      divItem.setAttribute("id","divItem");
+      divItem.setAttribute("index",friIndex);
+      divItem.style.backgroundColor = "skyblue";
+      var close = document.createElement('span');
+      close.setAttribute("class", "close");
+      close.setAttribute("onclick","removeItem(this)");
+      close.innerHTML='&times;';
+      divItem.appendChild(close);
+      var textDiv = document.createElement('div');
+      textDiv.setAttribute("class", "itemName");
+      textDiv.innerHTML = itemName;
+      divItem.appendChild(textDiv);
+      area.appendChild(divItem);
+
+      return divItem;
       break;
-
     default:
-
+      break;
   }
-  area.appendChild(divItem); //areaMon은 어디서 초기화 시켜줄까?
-}
 
+}
 /*
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = 'none';
     }
 }*/
+
+
+/***********showDiv**********
+function showItem(area){
+  switch (area) {
+    case "areaMon":
+
+      break;
+    default:
+
+  }
+}
+*/
+//***********deleteDiv***********//
+function removeItem(obj){
+  console.log("removeItem 메소드 실행");
+  console.log(obj.parentNode);
+  console.log(obj.parentNode.parentNode);
+
+  console.log(this.monItem);
+  console.log(this.monIndex);
+//  obj.parentNode.getAttribute('index');
+
+  //monIndex--;
+  switch (obj.parentNode.parentNode.className) {
+    case "displayArea_mon":
+      var target = obj.parentNode.getAttribute('index');
+      this.monItem.splice(target,1);
+      this.monIndex--;
+      // sort 해주기
+      indexSort(this.monItem);
+      break;
+
+    case "displayArea_tue":
+      var target = obj.parentNode.getAttribute('index');
+      this.tueItem.splice(target,1);
+      this.tueIndex--;
+      indexSort(this.tueItem);
+
+      break;
+
+    case "displayArea_wed":
+      var target = obj.parentNode.getAttribute('index');
+      this.wedItem.splice(target,1);
+      this.wedIndex--;
+      indexSort(this.wedItem);
+
+      break;
+
+    case "displayArea_thu":
+      var target = obj.parentNode.getAttribute('index');
+      this.thuItem.splice(target,1);
+      this.thuIndex--;
+      indexSort(this.thuItem);
+
+      break;
+
+    case "displayArea_fri":
+      var target = obj.parentNode.getAttribute('index');
+      this.friItem.splice(target,1);
+      this.friIndex--;
+      indexSort(this.friItem);
+
+      break;
+    default:
+    break;
+  }
+  obj.parentNode.parentNode.removeChild(obj.parentNode);
+}
+
+function indexSort(array){ // monItem 배열에 생성된 div의 index를 0부터 재배열
+  for (var i = 0; i < array.length; i++) {
+    array[i].setAttribute('index',i);
+  }
+}
