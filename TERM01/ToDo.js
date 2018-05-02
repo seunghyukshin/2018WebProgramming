@@ -62,6 +62,7 @@ closeAddModal();
 /***********makeDiv**********/
 function makeDiv(area){
   var itemName = this.formItemInAddModal[1].value;
+  var itemContent = this.formItemInAddModal[2].value;
   var divItem = document.createElement('div');
   divItem.setAttribute("class","divItem");
   divItem.setAttribute("onclick","openModifyModal(this)");
@@ -74,6 +75,11 @@ function makeDiv(area){
   textDiv.setAttribute("class", "itemName");//id부여
   textDiv.innerHTML = itemName;
   divItem.appendChild(textDiv);
+  var contentDiv = document.createElement('div');
+  contentDiv.setAttribute("class","itemContent");
+  contentDiv.innerHTML = itemContent;
+  contentDiv.style.display = 'none';
+  divItem.appendChild(contentDiv);
   area.appendChild(divItem);
 
   switch (area.className) {
@@ -107,25 +113,6 @@ function makeDiv(area){
   }
   return divItem;
 }
-/*
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
-}*/
-
-
-/***********showDiv**********
-function showItem(area){
-  switch (area) {
-    case "areaMon":
-
-      break;
-    default:
-
-  }
-}
-*/
 //***********deleteDiv***********//
 function removeItem(obj,event){
   event.stopPropagation();
@@ -192,10 +179,35 @@ function indexSort(array){ // monItem 배열에 생성된 div의 index속성을 
 
 
 
-// AddToDo 클릭시 modalopen
-function openModifyModal() {
+// 아이템 클릭시 modifymodalopen
+function openModifyModal(obj) {
     modifyModal= document.getElementById("modifyModal");
     modifyModal.style.display = 'block';
+
+    //modal창에 클릭한 div정보 출력
+    var valueInForm = document.getElementsByClassName('formInner_inModifyModal');
+    switch (obj.parentNode.className) {
+      case "displayArea_mon":
+        valueInForm[0].value = "monday";
+        break;
+      case "displayArea_tue":
+        valueInForm[0].value = "tuesday";
+        break;
+      case "displayArea_wed":
+        valueInForm[0].value = "wednesday";
+        break;
+      case "displayArea_thu":
+        valueInForm[0].value = "thursday";
+        break;
+      case "displayArea_fri":
+        valueInForm[0].value = "friday";
+        break;
+      default:
+
+    }
+    valueInForm[1].value = (obj.getAttribute("index")*1)+1; // priority (index+1)
+    valueInForm[2].value = obj.getElementsByClassName('itemName')[0].textContent; //itemName
+    valueInForm[3].value = obj.getElementsByClassName('itemContent')[0].textContent; //itemName
 }
 
 // x표 누를시 modalclose
