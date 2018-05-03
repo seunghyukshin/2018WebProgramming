@@ -5,6 +5,7 @@ var tueItem=[]; var tueIndex=0;
 var wedItem=[]; var wedIndex=0;
 var thuItem=[]; var thuIndex=0;
 var friItem=[]; var friIndex=0;
+var selectedDiv;
 //var areaFri;
 //var divItem;
 
@@ -18,7 +19,9 @@ function openAddModal() {
 function closeAddModal() {
     addModal.style.display = 'none';
 }
-
+function closeModifyModal() {
+    modifyModal.style.display = 'none';
+}
 function addItem(){
   formItemInAddModal=document.getElementsByClassName('formInner_inAddModal');
   switch (formItemInAddModal[0].value) {
@@ -181,13 +184,15 @@ function indexSort(array){ // monItem 배열에 생성된 div의 index속성을 
 
 // 아이템 클릭시 modifymodalopen
 function openModifyModal(obj) {
-    modifyModal= document.getElementById("modifyModal");
-    modifyModal.style.display = 'block';
+  console.log(obj);
+    this.selectedDiv = obj;
+    this.modifyModal= document.getElementById("modifyModal");
+    this.modifyModal.style.display = 'block';
 
     //modal창에 클릭한 div정보 출력
     var valueInForm = document.getElementsByClassName('formInner_inModifyModal');
     switch (obj.parentNode.className) {
-      case "displayArea_mon":
+        case "displayArea_mon":
         valueInForm[0].value = "monday";
         break;
       case "displayArea_tue":
@@ -203,14 +208,144 @@ function openModifyModal(obj) {
         valueInForm[0].value = "friday";
         break;
       default:
-
+        break;
     }
     valueInForm[1].value = (obj.getAttribute("index")*1)+1; // priority (index+1)
     valueInForm[2].value = obj.getElementsByClassName('itemName')[0].textContent; //itemName
-    valueInForm[3].value = obj.getElementsByClassName('itemContent')[0].textContent; //itemName
+    valueInForm[3].value = obj.getElementsByClassName('itemContent')[0].textContent; //itemContents
+
 }
 
 // x표 누를시 modalclose
 function closeModifyModal() {
-    modifyModal.style.display = 'none';
+    this.modifyModal.style.display = 'none';
+}
+
+function modifyItem(obj){
+  var valueInForm = obj.parentNode.getElementsByClassName('formInner_inModifyModal');
+  var day = valueInForm[0];
+  var priority = valueInForm[1]; //index = priority-1;
+  var itemName = valueInForm[2];
+  var itemContent = valueInForm[3];
+//  var index = this.selectedDiv.getAttribute("index");
+
+  var divItem = document.createElement('div');
+  divItem.setAttribute("class","divItem");
+  divItem.setAttribute("onclick","openModifyModal(this)");
+  var close = document.createElement('img');
+  close.setAttribute("class", "close");//close 넣고
+  close.setAttribute("src","img/delete.png");
+  close.setAttribute("onclick","removeItem(this,event)");
+  divItem.appendChild(close);
+  var textDiv = document.createElement('div');
+  textDiv.setAttribute("class", "itemName");// name 넣고
+  textDiv.innerHTML = itemName.value;
+  divItem.appendChild(textDiv);
+  var contentDiv = document.createElement('div');
+  contentDiv.setAttribute("class","itemContent");
+  contentDiv.innerHTML = itemContent.value;//content 넣고
+  contentDiv.style.display = 'none';
+  divItem.appendChild(contentDiv);
+  console.log(divItem);
+//  area.appendChild(divItem);
+
+  //selectedDiv 삭제하고 splice로 중간에 divItem 추가해주고(insertbefore도 해주기) indexSort해주고 index도 증가시켜주기
+  switch (day.value) {
+    case "monday":
+      var index = (priority.value*1)-1;
+      //divItem.setAttribute("index",newIndex); //indexSort에서 해결
+      divItem.style.backgroundColor = "#cfe0e0";
+      monItem.splice(index,0,divItem);
+      //removeIndex=this.selectedDiv.getAttribute("index");
+      var area = document.getElementsByClassName('displayArea_mon')[0];
+      area.insertBefore(divItem,area.childNodes[index]);
+      indexSort(monItem);
+      monIndex++;
+      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+
+      break;
+
+    case "tuesday":
+      var index = (priority.value*1)-1;
+
+      divItem.style.backgroundColor = "#e9b7b7";
+      tueItem.splice(index,0,divItem);
+
+      var area = document.getElementsByClassName('displayArea_tue')[0];
+      area.insertBefore(divItem,area.childNodes[index]);
+      indexSort(tueItem);
+      tueIndex++;
+      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+
+      break;
+
+    case "wednesday":
+      var index = (priority.value*1)-1;
+      divItem.style.backgroundColor = "#cce0e0";
+      wedItem.splice(index,0,divItem);
+
+      var area = document.getElementsByClassName('displayArea_wed')[0];
+      area.insertBefore(divItem,area.childNodes[index]);
+      indexSort(wedItem);
+      wedIndex++;
+      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+      break;
+
+    case "thursday":
+      var index = (priority.value*1)-1;
+      divItem.style.backgroundColor = "#e2ddc0";
+      thuItem.splice(index,0,divItem);
+
+      var area = document.getElementsByClassName('displayArea_thu')[0];
+      area.insertBefore(divItem,area.childNodes[index]);
+      indexSort(thuItem);
+      thuIndex++;
+      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+
+      break;
+
+    case "friday":
+      var index = (priority.value*1)-1;
+      divItem.style.backgroundColor = "skyblue";
+      friItem.splice(index,0,divItem);
+
+      var area = document.getElementsByClassName('displayArea_fri')[0];
+      area.insertBefore(divItem,area.childNodes[index]);
+      indexSort(friItem);
+      friIndex++;
+      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+
+      break;
+
+    default:
+      break;
+  }
+
+
+  /*
+  switch (this.selectedDiv.parentNode.className) {
+    //배열값 변경으로 수정!
+    case "displayArea_mon":
+      this.monItem[index].getElementsByClassName('itemName')[0].innerHTML=itemName.value;
+      this.monItem[index].getElementsByClassName('itemContent')[0].innerHTML = itemContent.value;
+
+      //valueInForm[0].value = "monday";
+      break;
+    case "displayArea_tue":
+      valueInForm[0].value = "tuesday";
+      break;
+    case "displayArea_wed":
+      valueInForm[0].value = "wednesday";
+      break;
+    case "displayArea_thu":
+      valueInForm[0].value = "thursday";
+      break;
+    case "displayArea_fri":
+      valueInForm[0].value = "friday";
+      break;
+    default:
+      break;
+  }
+*/
+  closeModifyModal();
 }
