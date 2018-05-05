@@ -10,7 +10,7 @@
     <article>
       <header>
         <button id="button_AddToDo" onclick="openAddModal()"> Add ToDo</button>
-        <form id="searchForm" action="ToDo.html" method="post">
+        <form id="searchForm" method="post" onsubmit="return false;">
           <select class="formInner" id="selectDay" name="searchDay">
             <option value="" disabled selected>day</option>
             <option value="monday">Monday</option>
@@ -20,7 +20,7 @@
             <option value="friday">Friday</option>
           </select>
 
-          <input class="formInner" id="searchItem" type="text" name="" value="" placeholder=" Enter your keyword here">
+          <input class="formInner" type="text" name="" value="" placeholder=" Enter your keyword here" onkeyup="searchItem(event);">
         </form>
       </header>
       <main>

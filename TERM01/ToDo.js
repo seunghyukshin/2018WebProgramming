@@ -320,32 +320,136 @@ function modifyItem(obj){
     default:
       break;
   }
-
-
-  /*
-  switch (this.selectedDiv.parentNode.className) {
-    //배열값 변경으로 수정!
-    case "displayArea_mon":
-      this.monItem[index].getElementsByClassName('itemName')[0].innerHTML=itemName.value;
-      this.monItem[index].getElementsByClassName('itemContent')[0].innerHTML = itemContent.value;
-
-      //valueInForm[0].value = "monday";
-      break;
-    case "displayArea_tue":
-      valueInForm[0].value = "tuesday";
-      break;
-    case "displayArea_wed":
-      valueInForm[0].value = "wednesday";
-      break;
-    case "displayArea_thu":
-      valueInForm[0].value = "thursday";
-      break;
-    case "displayArea_fri":
-      valueInForm[0].value = "friday";
-      break;
-    default:
-      break;
-  }
-*/
   closeModifyModal();
+}
+
+function searchItem(evt){
+console.log("searchItem메소드 실행");
+  var code = evt.which?evt.which:event.keyCode;
+	if(code == 13){
+    var searchDay = document.getElementsByClassName('formInner')[0].value;
+    console.log(searchDay);
+    switch (searchDay) {
+      case "monday":
+        filterInArray(this.monItem);
+        allNoneDisplayExcepted(this.monItem);
+        break;
+      case "tuesday":
+        filterInArray(this.tueItem);
+        allNoneDisplayExcepted(this.tueItem);
+        break;
+      case "wednesday":
+        filterInArray(this.wedItem);
+        allNoneDisplayExcepted(this.wedItem);
+        break;
+      case "thursday":
+        filterInArray(this.thuItem);
+        allNoneDisplayExcepted(this.thuItem);
+        break;
+      case "friday":
+        filterInArray(this.friItem);
+        allNoneDisplayExcepted(this.friItem);
+        break;
+      default: // 전체검색
+        filterInArray(this.monItem);
+        filterInArray(this.tueItem);
+        filterInArray(this.wedItem);
+        filterInArray(this.thuItem);
+        filterInArray(this.friItem);
+      }
+		return false;
+	}
+}
+
+function filterInArray(array){
+  // Add 할 때 textDiv를 innerHTML로 divItem에 넣어줬었다.
+  // 이 div의 class는 itemName
+  // 조건문에서는 itemName내부의 값과  #searchItem내부의 값을 비교해준다.
+  var inputText = document.getElementsByClassName('formInner')[1].value;
+  for (var i = 0; i < array.length; i++) {
+    var itemName = array[i].getElementsByClassName('itemName')[0].textContent;
+    if(itemName.match(inputText)){
+      array[i].style.display = 'block';
+      console.log("찾았다! 해냇다!");
+    }else{
+      array[i].style.display = 'none';
+    }
+  }
+}
+
+function allNoneDisplayExcepted(array){
+  switch (array) {
+    case this.monItem:
+      for (var i = 0; i < this.tueItem.length; i++) {
+        this.tueItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.wedItem.length; i++) {
+        this.wedItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.thuItem.length; i++) {
+        this.thuItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.friItem.length; i++) {
+        this.friItem[i].style.display='none';
+      }
+    break;
+    case this.tueItem:
+      for (var i = 0; i < this.monItem.length; i++) {
+        this.monItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.wedItem.length; i++) {
+        this.wedItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.thuItem.length; i++) {
+        this.thuItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.friItem.length; i++) {
+        this.friItem[i].style.display='none';
+      }
+    break;
+    case this.wedItem:
+      for (var i = 0; i < this.tueItem.length; i++) {
+        this.tueItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.monItem.length; i++) {
+        this.monItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.thuItem.length; i++) {
+        this.thuItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.friItem.length; i++) {
+        this.friItem[i].style.display='none';
+      }
+    break;
+    case this.thuItem:
+      for (var i = 0; i < this.tueItem.length; i++) {
+        this.tueItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.wedItem.length; i++) {
+        this.wedItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.monItem.length; i++) {
+        this.monItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.friItem.length; i++) {
+        this.friItem[i].style.display='none';
+      }
+    break;
+    case this.friItem:
+      for (var i = 0; i < this.tueItem.length; i++) {
+        this.tueItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.wedItem.length; i++) {
+        this.wedItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.thuItem.length; i++) {
+        this.thuItem[i].style.display='none';
+      }
+      for (var i = 0; i < this.monItem.length; i++) {
+        this.monItem[i].style.display='none';
+      }
+    break;
+    default:
+
+  }
 }
