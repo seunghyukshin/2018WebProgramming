@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" type="text/css" href="ToDo.css">
-    <script type="text/javascript" src="ToDo.js"></script>
+    <link rel="stylesheet" type="text/css" href="TP1_201302422_신승혁.css">
+    <script src="TP1_201302422_신승혁.js"></script>
     <meta charset="utf-8">
     <title> To Do</title>
   </head>
   <body>
-    <article>
+    <div id="article">
       <header>
         <button id="button_AddToDo" onclick="openAddModal()"> Add ToDo</button>
         <form id="searchForm" method="post" onsubmit="return false;">
           <select class="formInner" id="selectDay" name="searchDay">
-            <option value="" disabled selected>day</option>
+            <option value=" ">day</option>
             <option value="monday">Monday</option>
             <option value="tuesday">Tuesday</option>
             <option value="wednesday">Wednesday</option>
@@ -20,50 +20,50 @@
             <option value="friday">Friday</option>
           </select>
 
-          <input class="formInner" type="text" name="" value="" placeholder=" Enter your keyword here" onkeyup="searchItem(event);">
+          <input class="formInner" type="text" name="search" value="" placeholder=" Enter your keyword here" onkeyup="searchItem(event);">
         </form>
       </header>
-      <main>
+      <div id="main">
         <!-- Middle Bar A~D, Display Area A~D -->
-  			<section id="middleBar_mon" class="middle">
-  				<section class="middleTop"><b>mon</b></section>
-  				<section class="displayArea_mon"></section>
-  			</section>
+  			<div id="middleBar_mon" class="middle">
+  				<div class="middleTop"><b>mon</b></div>
+  				<div class="displayArea_mon"></div>
+  			</div>
   			<!--경계선-->
   			<div class="mainLine"></div>
 
-  			<section id="middleBar_tue" class="middle">
-  				<section class="middleTop"><b>tue</b></section>
-  				<section class="displayArea_tue"></section>
-  			</section>
+  			<div id="middleBar_tue" class="middle">
+  				<div class="middleTop"><b>tue</b></div>
+  				<div class="displayArea_tue"></div>
+  			</div>
   			<div class="mainLine"></div>
 
-  			<section id="middleBar_wed" class="middle">
-  				<section class="middleTop"><b>wed</b></section>
-  				<section class="displayArea_wed"></section>
-  			</section>
+  			<div id="middleBar_wed" class="middle">
+  				<div class="middleTop"><b>wed</b></div>
+  				<div class="displayArea_wed"></div>
+  			</div>
   			<div class="mainLine"></div>
 
-  			<section id="middleBar_thu" class="middle">
-  				<section class="middleTop"><b>thu</b></section>
-  				<section class="displayArea_thu"></section>
-  			</section>
+  			<div id="middleBar_thu" class="middle">
+  				<div class="middleTop"><b>thu</b></div>
+  				<div class="displayArea_thu"></div>
+  			</div>
   			<div class="mainLine"></div>
 
-  			<section id="middleBar_fri" class="middle">
-  				<section class="middleTop"><b>Fri</b></section>
-  				<section class="displayArea_fri"></section>
-  			</section>
+  			<div id="middleBar_fri" class="middle">
+  				<div class="middleTop"><b>Fri</b></div>
+  				<div class="displayArea_fri"></div>
+  			</div>
 
-      </main>
+      </div>
 
 
-      <section id="addModal" class="modal">
+      <div id="addModal" class="modal">
       <!-- Modal content !-->
-        <section class="modal-content">
+        <div class="modal-content">
           <img class="close" src="img/delete.png" onclick="closeAddModal()" alt="삐빅!오류입니다">
           <!-- <span class="close" onclick="closeModal()">&times;</span>!-->
-          <form class="form_inAddModal" action="" method="post">
+          <div class="form_inAddModal">
             <select class="formInner_inAddModal" name="addDay">
               <option value="" disabled selected>day</option>
               <option value="monday">Monday</option>
@@ -74,32 +74,32 @@
             </select>
             <input class="formInner_inAddModal" type="text" name="addItemName" placeholder="Item Name" >
             <textarea class="formInner_inAddModal" name="addItemContents" rows="8" cols="80" placeholder="Item Contents"></textarea>
-            <input class="button_Done" type="button" name="" value="Add" onclick="addItem()">
-          </form>
-        </section>
-    </section>
+            <input class="button_Done" type="button" value="Add" onclick="addItem()">
+          </div>
+        </div>
+    </div>
 
-    <section id="modifyModal" class="modal">
+    <div id="modifyModal" class="modal">
     <!-- Modal content !-->
-      <section class="modal-content">
+      <div class="modal-content">
         <img class="close" src="img/delete.png" onclick="closeModifyModal()" alt="삐빅!오류입니다">
         <!-- <span class="close" onclick="closeModal()">&times;</span>!-->
-        <form class="form_inModifyModal" action="" method="post">
-          <select class="formInner_inModifyModal" value="무엇?">
+        <div class="form_inModifyModal">
+          <select class="formInner_inModifyModal">
             <option value="monday">Monday</option>
             <option value="tuesday">Tuesday</option>
             <option value="wednesday">Wednesday</option>
             <option value="thursday">Thursday</option>
             <option value="friday">Friday</option>
           </select>
-          <input class = "formInner_inModifyModal" type="text" name="priority" >
-          <input class = "formInner_inModifyModal" type="text" name="itemName" >
+          <input class = "formInner_inModifyModal" type="text" name="priority">
+          <input class = "formInner_inModifyModal" type="text" name="itemName">
           <textarea class="formInner_inModifyModal" name="addItemContents" rows="6" cols="80" placeholder="Item Contents"></textarea>
-          <input class="button_Done" type="button" name="" value="Done" onclick="modifyItem(this)"> <!--온클릭에 modify메소드 넣어야함-->
-        </form>
-      </section>
-  </section>
-  </article>
+          <input class="button_Done" type="button" value="Done" onclick="modifyItem(this)"> <!--온클릭에 modify메소드 넣어야함-->
+        </div>
+      </div>
+  </div>
+</div>
 
   <!-- 추가될 item, 저장은 displayArea에
   <div id="divItem" style="display:none">

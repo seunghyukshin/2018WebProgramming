@@ -9,7 +9,7 @@ body{
 	margin: auto;
 	padding: 20px 30px 20px 30px;
 }
-article{
+#article{
 	background-color: #ffffff;
 	height: 100%;
 	border-style: none;
@@ -44,7 +44,7 @@ header{
 }
 
 /* Main Start */
-main{
+#main{
 	background-color: #ffffff;
 	height: 80%;
 	width: 800px;
