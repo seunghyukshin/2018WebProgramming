@@ -63,7 +63,7 @@ closeAddModal();
 }
 
 /***********makeDiv**********/
-function makeDiv(area){
+function makeDiv(area){ //form의 정보가 담긴 div를 생성하여 화면안의 area에 띄운다.
   var itemName = this.formItemInAddModal[1].value;
   var itemContent = this.formItemInAddModal[2].value;
   var divItem = document.createElement('div');
@@ -166,12 +166,6 @@ function removeItem(obj,event){
     default:
       break;
   }
-  console.log("removeItem 메소드 실행");
-  console.log(obj.parentNode);
-  //console.log(obj.parentNode.parentNode);
-  console.log(monItem);
-  console.log(monIndex);
-  //obj.parentNode.parentNode.removeChild(obj.parentNode);
 }
 
 function indexSort(array){ // monItem 배열에 생성된 div의 index속성을 0부터 재배열
@@ -184,7 +178,6 @@ function indexSort(array){ // monItem 배열에 생성된 div의 index속성을 
 
 // 아이템 클릭시 modifymodalopen
 function openModifyModal(obj) {
-  console.log(obj);
     this.selectedDiv = obj;
     this.modifyModal= document.getElementById("modifyModal");
     this.modifyModal.style.display = 'block';
@@ -213,7 +206,6 @@ function openModifyModal(obj) {
     valueInForm[1].value = (obj.getAttribute("index")*1)+1; // priority (index+1)
     valueInForm[2].value = obj.getElementsByClassName('itemName')[0].textContent; //itemName
     valueInForm[3].value = obj.getElementsByClassName('itemContent')[0].textContent; //itemContents
-
 }
 
 // x표 누를시 modalclose
@@ -246,75 +238,127 @@ function modifyItem(obj){
   contentDiv.innerHTML = itemContent.value;//content 넣고
   contentDiv.style.display = 'none';
   divItem.appendChild(contentDiv);
-  console.log(divItem);
-//  area.appendChild(divItem);
-
+  var index = (priority.value*1)-1;
   //selectedDiv 삭제하고 splice로 중간에 divItem 추가해주고(insertbefore도 해주기) indexSort해주고 index도 증가시켜주기
-  switch (day.value) {
+  switch (day.value) { // select해준 day값
     case "monday":
-      var index = (priority.value*1)-1;
-      //divItem.setAttribute("index",newIndex); //indexSort에서 해결
-      divItem.style.backgroundColor = "#cfe0e0";
-      monItem.splice(index,0,divItem);
-      //removeIndex=this.selectedDiv.getAttribute("index");
       var area = document.getElementsByClassName('displayArea_mon')[0];
-      area.insertBefore(divItem,area.childNodes[index]);
+      divItem.style.backgroundColor = "#cfe0e0";
+      if(selectedDiv.parentNode.className == "displayArea_mon"){//같은곳에서 변경
+        if(index < (selectedDiv.getAttribute("index")*1) ){ //아래서 위로갈때
+          area.insertBefore(divItem,area.childNodes[index]);
+          monItem.splice(index,0,divItem);
+          indexSort(monItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }else{//위에서 아래로 옮겨줄 때 / 같은 자리(내용만변경)
+          area.insertBefore(divItem,area.childNodes[index+1]);
+          monItem.splice(index+1,0,divItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }
+      }
+      else{ // 딴곳에서 monday로 옴
+        area.insertBefore(divItem,area.childNodes[index]);
+        monItem.splice(index,0,divItem);
+        removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+      }
       indexSort(monItem);
       monIndex++;
-      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
-
       break;
 
     case "tuesday":
-      var index = (priority.value*1)-1;
-
-      divItem.style.backgroundColor = "#e9b7b7";
-      tueItem.splice(index,0,divItem);
-
       var area = document.getElementsByClassName('displayArea_tue')[0];
-      area.insertBefore(divItem,area.childNodes[index]);
+      divItem.style.backgroundColor = "#e9b7b7";
+      if(selectedDiv.parentNode.className == "displayArea_tue"){//같은곳에서 변경
+        if(index < (selectedDiv.getAttribute("index")*1) ){ //아래서 위로갈때
+          area.insertBefore(divItem,area.childNodes[index]);
+          tueItem.splice(index,0,divItem);
+          indexSort(tueItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }else{//위에서 아래로 옮겨줄 때 / 같은 자리(내용만변경)
+          area.insertBefore(divItem,area.childNodes[index+1]);
+          tueItem.splice(index+1,0,divItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }
+      }
+      else{
+        area.insertBefore(divItem,area.childNodes[index]);
+        tueItem.splice(index,0,divItem);
+        removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+      }
       indexSort(tueItem);
       tueIndex++;
-      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
-
       break;
 
     case "wednesday":
-      var index = (priority.value*1)-1;
-      divItem.style.backgroundColor = "#cce0e0";
-      wedItem.splice(index,0,divItem);
-
       var area = document.getElementsByClassName('displayArea_wed')[0];
-      area.insertBefore(divItem,area.childNodes[index]);
+      divItem.style.backgroundColor = "#cce0e0";
+      if(selectedDiv.parentNode.className == "displayArea_wed"){//같은곳에서 변경
+        if(index < (selectedDiv.getAttribute("index")*1) ){ //아래서 위로갈때
+          area.insertBefore(divItem,area.childNodes[index]);
+          wedItem.splice(index,0,divItem);
+          indexSort(wedItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }else{//위에서 아래로 옮겨줄 때 / 같은 자리(내용만변경)
+          area.insertBefore(divItem,area.childNodes[index+1]);
+          wedItem.splice(index+1,0,divItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }
+      }
+      else{
+        area.insertBefore(divItem,area.childNodes[index]);
+        wedItem.splice(index,0,divItem);
+        removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+      }
       indexSort(wedItem);
       wedIndex++;
-      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
       break;
 
     case "thursday":
-      var index = (priority.value*1)-1;
-      divItem.style.backgroundColor = "#e2ddc0";
-      thuItem.splice(index,0,divItem);
-
       var area = document.getElementsByClassName('displayArea_thu')[0];
-      area.insertBefore(divItem,area.childNodes[index]);
+      divItem.style.backgroundColor = "#e2ddc0";
+      if(selectedDiv.parentNode.className == "displayArea_thu"){//같은곳에서 변경
+        if(index < (selectedDiv.getAttribute("index")*1) ){ //아래서 위로갈때
+          area.insertBefore(divItem,area.childNodes[index]);
+          thuItem.splice(index,0,divItem);
+          indexSort(thuItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }else{//위에서 아래로 옮겨줄 때 / 같은 자리(내용만변경)
+          area.insertBefore(divItem,area.childNodes[index+1]);
+          thuItem.splice(index+1,0,divItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }
+      }
+      else{
+        area.insertBefore(divItem,area.childNodes[index]);
+        thuItem.splice(index,0,divItem);
+        removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+      }
       indexSort(thuItem);
       thuIndex++;
-      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
-
       break;
 
     case "friday":
-      var index = (priority.value*1)-1;
-      divItem.style.backgroundColor = "skyblue";
-      friItem.splice(index,0,divItem);
-
       var area = document.getElementsByClassName('displayArea_fri')[0];
-      area.insertBefore(divItem,area.childNodes[index]);
+      divItem.style.backgroundColor = "skyblue";
+      if(selectedDiv.parentNode.className == "displayArea_fri"){//같은곳에서 변경
+        if(index < (selectedDiv.getAttribute("index")*1) ){ //아래서 위로갈때
+          area.insertBefore(divItem,area.childNodes[index]);
+          friItem.splice(index,0,divItem);
+          indexSort(friItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }else{//위에서 아래로 옮겨줄 때 / 같은 자리(내용만변경)
+          area.insertBefore(divItem,area.childNodes[index+1]);
+          friItem.splice(index+1,0,divItem);
+          removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+        }
+      }
+      else{ // 딴곳에서 monday로 옴
+        area.insertBefore(divItem,area.childNodes[index]);
+        friItem.splice(index,0,divItem);
+        removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
+      }
       indexSort(friItem);
       friIndex++;
-      removeItem(this.selectedDiv.getElementsByClassName('close')[0],event); // 선택한div삭제, indexsort
-
       break;
 
     default:
